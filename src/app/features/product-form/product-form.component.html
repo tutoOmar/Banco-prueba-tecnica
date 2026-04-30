@@ -15,10 +15,11 @@
             id="id" 
             formControlName="id" 
             [class.invalid]="isInvalid('id')"
+            [attr.aria-invalid]="isInvalid('id')"
             placeholder="ID del producto"
           >
           @if (isInvalid('id')) {
-            <span class="field-error">{{ getErrorMessage('id') }}</span>
+            <span class="field-error" aria-live="polite">{{ getErrorMessage('id') }}</span>
           }
         </div>
 
@@ -29,10 +30,11 @@
             id="name" 
             formControlName="name" 
             [class.invalid]="isInvalid('name')"
+            [attr.aria-invalid]="isInvalid('name')"
             placeholder="Nombre del producto"
           >
           @if (isInvalid('name')) {
-            <span class="field-error">{{ getErrorMessage('name') }}</span>
+            <span class="field-error" aria-live="polite">{{ getErrorMessage('name') }}</span>
           }
         </div>
 
@@ -43,10 +45,11 @@
             id="description" 
             formControlName="description" 
             [class.invalid]="isInvalid('description')"
+            [attr.aria-invalid]="isInvalid('description')"
             placeholder="Descripción del producto"
           >
           @if (isInvalid('description')) {
-            <span class="field-error">{{ getErrorMessage('description') }}</span>
+            <span class="field-error" aria-live="polite">{{ getErrorMessage('description') }}</span>
           }
         </div>
 
@@ -57,10 +60,11 @@
             id="logo" 
             formControlName="logo" 
             [class.invalid]="isInvalid('logo')"
+            [attr.aria-invalid]="isInvalid('logo')"
             placeholder="URL del logo"
           >
           @if (isInvalid('logo')) {
-            <span class="field-error">{{ getErrorMessage('logo') }}</span>
+            <span class="field-error" aria-live="polite">{{ getErrorMessage('logo') }}</span>
           }
         </div>
 
@@ -71,9 +75,10 @@
             id="date_release" 
             formControlName="date_release" 
             [class.invalid]="isInvalid('date_release')"
+            [attr.aria-invalid]="isInvalid('date_release')"
           >
           @if (isInvalid('date_release')) {
-            <span class="field-error">{{ getErrorMessage('date_release') }}</span>
+            <span class="field-error" aria-live="polite">{{ getErrorMessage('date_release') }}</span>
           }
         </div>
 
@@ -84,10 +89,11 @@
             id="date_revision" 
             formControlName="date_revision" 
             [class.invalid]="isInvalid('date_revision')"
+            [attr.aria-invalid]="isInvalid('date_revision')"
             readonly
           >
           @if (isInvalid('date_revision') || productForm.hasError('invalidDateRevision')) {
-            <span class="field-error">{{ getErrorMessage('date_revision') }}</span>
+            <span class="field-error" aria-live="polite">{{ getErrorMessage('date_revision') }}</span>
           }
         </div>
       </div>

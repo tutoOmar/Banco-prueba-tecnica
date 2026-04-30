@@ -1,59 +1,53 @@
-# BpFinancialProducts
+# BP Financial Products Dashboard
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.25.
+Este proyecto es una aplicación frontend desarrollada con **Angular 19** para la gestión de productos financieros (CRUD), siguiendo los más altos estándares de arquitectura y calidad de software.
 
-## Development server
+## 1. Stack Tecnológico
+- **Core**: Angular 19 (Standalone Components, Signals API, Control Flow).
+- **State Management**: Signals-based centralized store (ProductsStore).
+- **Testing**: Jest con cobertura de código >70%.
+- **Estilos**: Vanilla CSS (sin frameworks externos, mobile-first).
+- **Contenedores**: Docker (Multi-stage build).
+- **CI/CD**: GitHub Actions.
 
-To start a local development server, run:
+## 2. Guía de Inicio Rápido
 
+### Requisitos Previos
+- **Node.js**: v20 o superior.
+- **Backend Local**: Debe estar corriendo en `http://localhost:3002`.
+
+### Instalación
 ```bash
-ng serve
+npm install
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
+### Ejecución en Desarrollo
 ```bash
-ng generate component component-name
+npm start
+```
+La aplicación estará disponible en `http://localhost:4200`.
+
+### Ejecución con Docker
+```bash
+docker build -t banco-pichincha-frontend .
+docker run -p 8080:80 banco-pichincha-frontend
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
+## 3. Pruebas y Calidad
+Para ejecutar la suite de pruebas unitarias y verificar la cobertura:
 ```bash
-ng generate --help
+npm run test:coverage
 ```
+Los reportes detallados se generan en la carpeta `/coverage`.
 
-## Building
+## 4. Arquitectura de la Solución
+- **Smart/Dumb Components**: Separación clara entre componentes de lógica y componentes de presentación.
+- **OnPush Strategy**: Optimización de rendimiento en todos los componentes.
+- **Validators**: Validaciones personalizadas síncronas y asíncronas (ID único).
+- **Servicios**: Implementación del patrón Port/Adapter mediante inyección de dependencias con `inject()`.
 
-To build the project run:
+## 5. Troubleshooting (CORS)
+Dado que los servicios son locales, si experimenta errores de conexión, asegúrese de que el backend tenga habilitado **CORS** para `http://localhost:4200`. La URL base de la API se configura en `src/environments/environment.ts`.
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
+Desarrollado como solución técnica de gestión financiera.

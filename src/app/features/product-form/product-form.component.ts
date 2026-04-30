@@ -1,4 +1,4 @@
-import { Component, OnInit, signal, inject } from '@angular/core';
+import { Component, OnInit, signal, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -13,7 +13,8 @@ import { idAsyncValidator } from '../../shared/validators/id-async.validator';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './product-form.component.html',
-  styleUrl: './product-form.component.css'
+  styleUrl: './product-form.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductFormComponent implements OnInit {
   private readonly fb = inject(FormBuilder);

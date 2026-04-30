@@ -51,8 +51,4 @@ export class ProductsStore {
   isLoaded(): boolean {
     return this._loaded;
   }
-
-  loaded(): boolean {
-    return this._loaded;
-  }
 }
