@@ -1,0 +1,5 @@
+// src/environments/environment.ts
+export const environment = {
+  production: true,
+  apiBaseUrl: 'http://localhost:3002'
+};

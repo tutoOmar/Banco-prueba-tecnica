@@ -1,0 +1,13 @@
+node_modules
+dist
+.git
+.gitignore
+.agents
+.vscode
+.editorconfig
+README.md
+coverage
+*.spec.ts
+jest.config.ts
+setup-jest.ts
+tsconfig.spec.json
