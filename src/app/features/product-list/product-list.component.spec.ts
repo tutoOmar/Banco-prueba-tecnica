@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { Router } from '@angular/router';
 import { ProductListComponent } from './product-list.component';
 import { ProductsStore } from '../../core/store/products.store';
 import { FinancialProductsService } from '../../core/services/financial-products.service';
@@ -88,5 +89,40 @@ describe('ProductListComponent', () => {
     fixture.detectChanges();
     const emptyState = fixture.nativeElement.querySelector('.empty-state');
     expect(emptyState).toBeTruthy();
+  });
+
+  it('debe navegar al formulario de creación al hacer click en Agregar', () => {
+    const router = TestBed.inject(Router);
+    jest.spyOn(router, 'navigate');
+    fixture.detectChanges();
+    const btn = fixture.nativeElement.querySelector('.btn-primary');
+    btn.click();
+    expect(router.navigate).toHaveBeenCalledWith(['/products/new']);
+  });
+
+  it('debe mostrar el menú contextual al hacer click en ⋮', () => {
+    fixture.detectChanges();
+    const btn = fixture.nativeElement.querySelector('.btn-menu');
+    btn.click();
+    fixture.detectChanges();
+    const menu = fixture.nativeElement.querySelector('.dropdown-menu');
+    expect(menu).toBeTruthy();
+  });
+
+  it('debe navegar al formulario de edición al seleccionar Editar en el menú', () => {
+    const router = TestBed.inject(Router);
+    jest.spyOn(router, 'navigate');
+    fixture.detectChanges();
+    
+    // Abrir menú
+    const btn = fixture.nativeElement.querySelector('.btn-menu');
+    btn.click();
+    fixture.detectChanges();
+    
+    // Click en Editar
+    const editBtn = fixture.nativeElement.querySelector('.dropdown-menu button');
+    editBtn.click();
+    
+    expect(router.navigate).toHaveBeenCalledWith(['/products/edit', '1']);
   });
 });

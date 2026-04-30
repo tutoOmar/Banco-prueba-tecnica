@@ -9,7 +9,7 @@
       >
     </div>
     <div class="action-container">
-      <button class="btn-primary">Agregar</button>
+      <button class="btn-primary" (click)="onAddProduct()" aria-label="Agregar nuevo producto">Agregar</button>
     </div>
   </div>
 
@@ -48,7 +48,15 @@
                 <td>{{ product.date_release | date:'dd/MM/yyyy' }}</td>
                 <td>{{ product.date_revision | date:'dd/MM/yyyy' }}</td>
                 <td class="actions-cell">
-                  <button class="btn-menu">⋮</button>
+                  <div class="menu-container">
+                    <button class="btn-menu" (click)="toggleMenu(product.id, $event)">⋮</button>
+                    @if (activeMenuId() === product.id) {
+                      <div class="dropdown-menu">
+                        <button (click)="onEdit(product.id)">Editar</button>
+                        <button (click)="onDelete(product)" class="delete-option">Eliminar</button>
+                      </div>
+                    }
+                  </div>
                 </td>
               </tr>
             } @empty {

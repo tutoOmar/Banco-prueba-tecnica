@@ -1,1 +1,110 @@
-<p>product-form works</p>
+<div class="main-container">
+  <div class="form-container">
+    <h2 class="form-title">{{ isEditMode() ? 'Editar Producto' : 'Formulario de Registro' }}</h2>
+    <hr class="title-divider">
+
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="product-form">
+      <div class="form-grid">
+        <div class="form-field">
+          <label for="id">ID</label>
+          <input 
+            type="text" 
+            id="id" 
+            formControlName="id" 
+            [class.invalid]="isInvalid('id')"
+            placeholder="ID del producto"
+          >
+          @if (isInvalid('id')) {
+            <span class="field-error">{{ getErrorMessage('id') }}</span>
+          }
+        </div>
+
+        <div class="form-field">
+          <label for="name">Nombre</label>
+          <input 
+            type="text" 
+            id="name" 
+            formControlName="name" 
+            [class.invalid]="isInvalid('name')"
+            placeholder="Nombre del producto"
+          >
+          @if (isInvalid('name')) {
+            <span class="field-error">{{ getErrorMessage('name') }}</span>
+          }
+        </div>
+
+        <div class="form-field">
+          <label for="description">Descripción</label>
+          <input 
+            type="text" 
+            id="description" 
+            formControlName="description" 
+            [class.invalid]="isInvalid('description')"
+            placeholder="Descripción del producto"
+          >
+          @if (isInvalid('description')) {
+            <span class="field-error">{{ getErrorMessage('description') }}</span>
+          }
+        </div>
+
+        <div class="form-field">
+          <label for="logo">Logo</label>
+          <input 
+            type="text" 
+            id="logo" 
+            formControlName="logo" 
+            [class.invalid]="isInvalid('logo')"
+            placeholder="URL del logo"
+          >
+          @if (isInvalid('logo')) {
+            <span class="field-error">{{ getErrorMessage('logo') }}</span>
+          }
+        </div>
+
+        <div class="form-field">
+          <label for="date_release">Fecha Liberación</label>
+          <input 
+            type="date" 
+            id="date_release" 
+            formControlName="date_release" 
+            [class.invalid]="isInvalid('date_release')"
+          >
+          @if (isInvalid('date_release')) {
+            <span class="field-error">{{ getErrorMessage('date_release') }}</span>
+          }
+        </div>
+
+        <div class="form-field">
+          <label for="date_revision">Fecha Revisión</label>
+          <input 
+            type="date" 
+            id="date_revision" 
+            formControlName="date_revision" 
+            [class.invalid]="isInvalid('date_revision')"
+            readonly
+          >
+          @if (isInvalid('date_revision') || productForm.hasError('invalidDateRevision')) {
+            <span class="field-error">{{ getErrorMessage('date_revision') }}</span>
+          }
+        </div>
+      </div>
+
+      @if (formErrorMessage()) {
+        <div class="form-general-error">
+          {{ formErrorMessage() }}
+        </div>
+      }
+
+      <div class="form-actions">
+        <button type="button" class="btn-secondary" (click)="onReset()">Reiniciar</button>
+        <button 
+          type="submit" 
+          class="btn-primary" 
+          [disabled]="productForm.invalid || isSubmitting()"
+        >
+          {{ isSubmitting() ? 'Enviando...' : (isEditMode() ? 'Guardar' : 'Enviar') }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
