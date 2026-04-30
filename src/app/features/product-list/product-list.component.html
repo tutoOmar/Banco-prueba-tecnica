@@ -85,3 +85,11 @@
     }
   </div>
 </div>
+
+@if (showDeleteModal()) {
+  <app-delete-modal 
+    [message]="'¿Estás seguro de eliminar el producto ' + productToDelete()?.name + '?'"
+    (confirm)="confirmDelete()"
+    (cancel)="cancelDelete()"
+  ></app-delete-modal>
+}

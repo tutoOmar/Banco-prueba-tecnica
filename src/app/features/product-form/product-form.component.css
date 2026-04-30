@@ -12,6 +12,28 @@
   box-shadow: var(--shadow-card);
 }
 
+.form-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.btn-back {
+  background: none;
+  border: 1px solid var(--color-border);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--color-text);
+  transition: background-color 0.2s;
+}
+
+.btn-back:hover {
+  background-color: #f1f5f9;
+}
+
 .form-title {
   font-size: 24px;
   text-align: center;

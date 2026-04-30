@@ -7,11 +7,13 @@ import { HostListener } from '@angular/core';
 import { ProductsStore } from '../../core/store/products.store';
 import { FinancialProductsService } from '../../core/services/financial-products.service';
 import { SkeletonRowComponent } from '../../shared/components/skeleton-row/skeleton-row.component';
+import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
+import { FinancialProduct } from '../../core/models/financial-product.model';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, SkeletonRowComponent],
+  imports: [CommonModule, ReactiveFormsModule, SkeletonRowComponent, DeleteModalComponent],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })
@@ -25,6 +27,8 @@ export class ProductListComponent implements OnInit {
   readonly error = this.store.error;
 
   imageErrors = signal<Record<string, boolean>>({});
+  productToDelete = signal<FinancialProduct | null>(null);
+  showDeleteModal = computed(() => !!this.productToDelete());
 
   searchTerm = signal('');
   pageSize = signal<number>(5);
@@ -90,9 +94,29 @@ export class ProductListComponent implements OnInit {
     this.activeMenuId.set(null);
   }
 
-  onDelete(product: any): void {
-    // F6 will handle this
+  onDelete(product: FinancialProduct): void {
+    this.productToDelete.set(product);
     this.activeMenuId.set(null);
+  }
+
+  confirmDelete(): void {
+    const product = this.productToDelete();
+    if (product) {
+      this.service.deleteProduct(product.id).subscribe({
+        next: () => {
+          this.store.removeProduct(product.id);
+          this.productToDelete.set(null);
+        },
+        error: (err) => {
+          this.store.setError(err.message);
+          this.productToDelete.set(null);
+        }
+      });
+    }
+  }
+
+  cancelDelete(): void {
+    this.productToDelete.set(null);
   }
 
   @HostListener('document:click')

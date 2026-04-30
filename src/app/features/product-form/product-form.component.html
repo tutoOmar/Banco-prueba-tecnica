@@ -1,6 +1,9 @@
 <div class="main-container">
   <div class="form-container">
-    <h2 class="form-title">{{ isEditMode() ? 'Editar Producto' : 'Formulario de Registro' }}</h2>
+    <div class="form-header">
+      <button type="button" class="btn-back" (click)="onBack()" aria-label="Volver al listado">← Volver</button>
+      <h2 class="form-title">{{ isEditMode() ? 'Editar Producto' : 'Formulario de Registro' }}</h2>
+    </div>
     <hr class="title-divider">
 
     <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="product-form">
