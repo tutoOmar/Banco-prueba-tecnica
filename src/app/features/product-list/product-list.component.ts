@@ -2,6 +2,8 @@ import { Component, OnInit, signal, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { HostListener } from '@angular/core';
 import { ProductsStore } from '../../core/store/products.store';
 import { FinancialProductsService } from '../../core/services/financial-products.service';
 import { SkeletonRowComponent } from '../../shared/components/skeleton-row/skeleton-row.component';
@@ -16,6 +18,7 @@ import { SkeletonRowComponent } from '../../shared/components/skeleton-row/skele
 export class ProductListComponent implements OnInit {
   private readonly store = inject(ProductsStore);
   private readonly service = inject(FinancialProductsService);
+  private readonly router = inject(Router);
 
   readonly products = this.store.products;
   readonly isLoading = this.store.isLoading;
@@ -25,6 +28,7 @@ export class ProductListComponent implements OnInit {
 
   searchTerm = signal('');
   pageSize = signal<number>(5);
+  activeMenuId = signal<string | null>(null);
 
   searchControl = new FormControl('');
 
@@ -70,5 +74,29 @@ export class ProductListComponent implements OnInit {
 
   onImageError(id: string): void {
     this.imageErrors.update(prev => ({ ...prev, [id]: true }));
+  }
+
+  onAddProduct(): void {
+    this.router.navigate(['/products/new']);
+  }
+
+  toggleMenu(id: string, event: Event): void {
+    event.stopPropagation();
+    this.activeMenuId.update(current => current === id ? null : id);
+  }
+
+  onEdit(id: string): void {
+    this.router.navigate(['/products/edit', id]);
+    this.activeMenuId.set(null);
+  }
+
+  onDelete(product: any): void {
+    // F6 will handle this
+    this.activeMenuId.set(null);
+  }
+
+  @HostListener('document:click')
+  closeMenu(): void {
+    this.activeMenuId.set(null);
   }
 }
