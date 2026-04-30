@@ -1,4 +1,3 @@
-// core/models/financial-product.model.ts
 export interface FinancialProduct {
   id: string;
   name: string;
@@ -16,3 +15,6 @@ export interface ProductMutationResponse {
   message: string;
   data: FinancialProduct;
 }
+
+export type CreateProductPayload = FinancialProduct;
+export type UpdateProductPayload = Omit<FinancialProduct, 'id'>;
