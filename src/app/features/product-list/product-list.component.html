@@ -6,6 +6,7 @@
         [formControl]="searchControl" 
         placeholder="Search..." 
         class="search-input"
+        aria-label="Buscar productos por nombre o descripción"
       >
     </div>
     <div class="action-container">
@@ -75,7 +76,7 @@
           {{ totalResults() }} Resultados
         </div>
         <div class="pagination-controls">
-          <select (change)="onPageSizeChange($event)" [value]="pageSize()" class="page-select">
+          <select (change)="onPageSizeChange($event)" [value]="pageSize()" class="page-select" aria-label="Cantidad de resultados por página">
             <option [value]="5">5</option>
             <option [value]="10">10</option>
             <option [value]="20">20</option>
