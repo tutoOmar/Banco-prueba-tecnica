@@ -1,6 +1,6 @@
-# Dashboard de Gestión de Productos Financieros - Banco Pichincha
+# BP Financial Products Dashboard
 
-Este proyecto es una aplicación frontend desarrollada con **Angular 19** para la gestión de productos financieros (CRUD), siguiendo los más altos estándares de arquitectura y calidad de software (Senior).
+Este proyecto es una aplicación frontend desarrollada con **Angular 19** para la gestión de productos financieros (CRUD), siguiendo los más altos estándares de arquitectura y calidad de software.
 
 ## 1. Stack Tecnológico
 - **Core**: Angular 19 (Standalone Components, Signals API, Control Flow).
@@ -50,4 +50,4 @@ Los reportes detallados se generan en la carpeta `/coverage`.
 Dado que los servicios son locales, si experimenta errores de conexión, asegúrese de que el backend tenga habilitado **CORS** para `http://localhost:4200`. La URL base de la API se configura en `src/environments/environment.ts`.
 
 ---
-Desarrollado como prueba técnica para Banco Pichincha.
+Desarrollado como solución técnica de gestión financiera.

@@ -17,10 +17,10 @@
 }
 
 .bank-name {
-  color: #0F265C; /* Dark blue often used by Pichincha */
-  font-size: 20px;
-  font-weight: 800;
-  letter-spacing: 1px;
+  color: #0F265C;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
 .app-content {
