@@ -1,0 +1,30 @@
+.main-header {
+  background-color: #fff;
+  padding: 16px 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.header-content {
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.bank-name {
+  color: #0F265C; /* Dark blue often used by Pichincha */
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.app-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}

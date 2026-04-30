@@ -1,5 +1,5 @@
-# 01-setup.spec.md
-## Crear y configurar el proyecto base
+# Especificación 01: Infraestructura Base
+## Configuración del Workspace y Entorno de Desarrollo
 
 **Estado:** APPROVED
 **Scope:** Scaffolding del proyecto Angular 19, configuración de Jest, environments, rutas y archivos base. No incluye lógica de negocio ni componentes de feature.
