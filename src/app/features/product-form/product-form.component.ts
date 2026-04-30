@@ -105,6 +105,10 @@ export class ProductFormComponent implements OnInit {
     }
   }
 
+  onBack(): void {
+    this.router.navigate(['/products']);
+  }
+
   onReset(): void {
     if (this.isEditMode()) {
       const id = this.route.snapshot.paramMap.get('id');

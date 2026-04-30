@@ -25,7 +25,8 @@ describe('ProductListComponent', () => {
         {
           provide: FinancialProductsService,
           useValue: {
-            getProducts: () => of(mockProducts)
+            getProducts: () => of(mockProducts),
+            deleteProduct: () => of({ message: 'Deleted' })
           }
         }
       ]
@@ -124,5 +125,38 @@ describe('ProductListComponent', () => {
     editBtn.click();
     
     expect(router.navigate).toHaveBeenCalledWith(['/products/edit', '1']);
+  });
+
+  it('debe abrir el modal de eliminación al seleccionar Eliminar', () => {
+    fixture.detectChanges();
+    
+    // Abrir menú
+    const btn = fixture.nativeElement.querySelector('.btn-menu');
+    btn.click();
+    fixture.detectChanges();
+    
+    // Click en Eliminar (segundo botón del dropdown)
+    const deleteBtn = fixture.nativeElement.querySelectorAll('.dropdown-menu button')[1] as HTMLButtonElement;
+    deleteBtn.click();
+    fixture.detectChanges();
+    
+    const modal = fixture.nativeElement.querySelector('app-delete-modal');
+    expect(modal).toBeTruthy();
+    expect(component.productToDelete()).toEqual(mockProducts[0]);
+  });
+
+  it('debe llamar al servicio y eliminar del store al confirmar', () => {
+    jest.spyOn(service, 'deleteProduct').mockReturnValue(of({ message: 'Deleted' }));
+    jest.spyOn(store, 'removeProduct');
+    
+    fixture.detectChanges();
+    component.onDelete(mockProducts[0]);
+    fixture.detectChanges();
+    
+    component.confirmDelete();
+    
+    expect(service.deleteProduct).toHaveBeenCalledWith('1');
+    expect(store.removeProduct).toHaveBeenCalledWith('1');
+    expect(component.productToDelete()).toBeNull();
   });
 });

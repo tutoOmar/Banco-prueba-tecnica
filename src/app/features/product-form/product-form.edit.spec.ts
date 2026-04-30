@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FinancialProductsService } from '../../core/services/financial-products.service';
 import { ProductsStore } from '../../core/store/products.store';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 
 describe('ProductFormComponent - Edit Mode', () => {
@@ -73,5 +73,16 @@ describe('ProductFormComponent - Edit Mode', () => {
     component.onSubmit();
     
     expect(service.updateProduct).toHaveBeenCalledWith('test-id', expect.anything());
+  });
+
+  it('debe manejar error al actualizar producto', () => {
+    const errorMsg = 'Error del servidor';
+    jest.spyOn(service, 'updateProduct').mockReturnValue(throwError(() => ({ message: errorMsg })));
+    fixture.detectChanges();
+    
+    component.onSubmit();
+    
+    expect(component.formErrorMessage()).toBe(errorMsg);
+    expect(component.isSubmitting()).toBe(false);
   });
 });

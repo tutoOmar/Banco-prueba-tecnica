@@ -1,1 +1,11 @@
-<p>delete-modal works</p>
+<div class="modal-overlay" (click)="onCancel()" role="dialog" aria-modal="true">
+  <div class="modal-card" (click)="$event.stopPropagation()">
+    <div class="modal-body">
+      <p class="confirm-text">{{ message }}</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn-secondary" (click)="onCancel()" #cancelBtn>Cancelar</button>
+      <button type="button" class="btn-primary" (click)="onConfirm()">Confirmar</button>
+    </div>
+  </div>
+</div>
