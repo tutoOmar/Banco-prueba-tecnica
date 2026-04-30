@@ -1,0 +1,35 @@
+/* src/styles.css */
+:root {
+  --color-primary:  #FFDD00;
+  --color-danger:   #E74C3C;
+  --color-success:  #27AE60;
+  --color-text:     #1A1A2E;
+  --color-border:   #CBD5E0;
+  --color-bg:       #F7F8FA;
+  --radius-sm:      4px;
+  --radius-md:      8px;
+  --shadow-card:    0 2px 8px rgba(0, 0, 0, 0.08);
+  --font-base:      'Segoe UI', Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-base);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Skeleton pulse animation — usada por SkeletonRowComponent */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
