@@ -41,7 +41,7 @@
                   @if (product.logo && !imageErrors()[product.id]) {
                     <img [src]="product.logo" [alt]="product.name" class="product-logo" (error)="onImageError(product.id)">
                   } @else {
-                    <div class="product-logo-fallback">P</div>
+                    <div class="product-logo-fallback">JG</div>
                   }
                 </td>
                 <td>{{ product.name }}</td>

@@ -7,9 +7,9 @@ export function dateReleaseValidator(): ValidatorFn {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     
-    const releaseDate = new Date(control.value);
-    releaseDate.setMinutes(releaseDate.getMinutes() + releaseDate.getTimezoneOffset());
-    releaseDate.setHours(0, 0, 0, 0);
+    // Parse YYYY-MM-DD as local date to avoid timezone shifts
+    const [year, month, day] = control.value.split('-').map(Number);
+    const releaseDate = new Date(year, month - 1, day);
     
     return releaseDate >= today ? null : { invalidDateRelease: true };
   };
