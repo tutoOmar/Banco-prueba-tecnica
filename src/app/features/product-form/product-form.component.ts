@@ -27,6 +27,7 @@ export class ProductFormComponent implements OnInit {
   isEditMode = signal(false);
   isSubmitting = signal(false);
   formErrorMessage = signal<string | null>(null);
+  minDate = signal<string>(new Date().toISOString().split('T')[0]);
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');

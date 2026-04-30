@@ -60,20 +60,20 @@
 
 .product-logo,
 .product-logo-fallback {
-  width: 70px;
+  width: 40px;
   height: 40px;
-  object-fit: cover;
-  background: #f0f0f0;
+  border-radius: 50%;
+  object-fit: contain;
 }
 
 .product-logo-fallback {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--color-primary);
-  color: var(--color-text);
+  background-color: #e2e8f0;
+  color: #4a5568;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 14px;
 }
 
 .info-icon {

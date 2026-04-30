@@ -7,14 +7,13 @@ export function dateRevisionValidator(): ValidatorFn {
 
     if (!release || !revision) return null;
 
-    const releaseDate = new Date(release);
-    const revisionDate = new Date(revision);
-
-    const expectedRevisionDate = new Date(releaseDate);
-    expectedRevisionDate.setFullYear(expectedRevisionDate.getFullYear() + 1);
+    const [relYear, relMonth, relDay] = release.split('-').map(Number);
+    const [revYear, revMonth, revDay] = revision.split('-').map(Number);
 
     const isExactlyOneYearLater = 
-      revisionDate.getTime() === expectedRevisionDate.getTime();
+      revYear === relYear + 1 && 
+      revMonth === relMonth && 
+      revDay === relDay;
 
     return isExactlyOneYearLater ? null : { invalidDateRevision: true };
   };

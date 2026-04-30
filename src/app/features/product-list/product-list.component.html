@@ -1,13 +1,8 @@
 <div class="main-container">
   <div class="list-header">
     <div class="search-container">
-      <input 
-        type="text" 
-        [formControl]="searchControl" 
-        placeholder="Search..." 
-        class="search-input"
-        aria-label="Buscar productos por nombre o descripción"
-      >
+      <input type="text" [formControl]="searchControl" placeholder="Buscar..." class="search-input"
+        aria-label="Buscar productos por nombre o descripción">
     </div>
     <div class="action-container">
       <button class="btn-primary" (click)="onAddProduct()" aria-label="Agregar nuevo producto">Agregar</button>
@@ -16,81 +11,79 @@
 
   <div class="table-card">
     @if (isLoading()) {
-      <app-skeleton-row [rows]="5"></app-skeleton-row>
+    <app-skeleton-row [rows]="5"></app-skeleton-row>
     } @else if (error()) {
-      <div class="error-message">
-        {{ error() }}
-      </div>
+    <div class="error-message">
+      {{ error() }}
+    </div>
     } @else {
-      <div class="table-responsive">
-        <table class="product-table">
-          <thead>
-            <tr>
-              <th>Logo</th>
-              <th>Nombre del producto</th>
-              <th>Descripción <i class="info-icon" title="Descripción del producto">i</i></th>
-              <th>Fecha de liberación <i class="info-icon" title="Fecha en que se libera el producto">i</i></th>
-              <th>Fecha de reestructuración <i class="info-icon" title="Fecha de revisión programada">i</i></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (product of paginatedProducts(); track product.id) {
-              <tr>
-                <td>
-                  @if (product.logo && !imageErrors()[product.id]) {
-                    <img [src]="product.logo" [alt]="product.name" class="product-logo" (error)="onImageError(product.id)">
-                  } @else {
-                    <div class="product-logo-fallback">P</div>
-                  }
-                </td>
-                <td>{{ product.name }}</td>
-                <td>{{ product.description }}</td>
-                <td>{{ product.date_release | date:'dd/MM/yyyy' }}</td>
-                <td>{{ product.date_revision | date:'dd/MM/yyyy' }}</td>
-                <td class="actions-cell">
-                  <div class="menu-container">
-                    <button class="btn-menu" (click)="toggleMenu(product.id, $event)">⋮</button>
-                    @if (activeMenuId() === product.id) {
-                      <div class="dropdown-menu">
-                        <button (click)="onEdit(product.id)">Editar</button>
-                        <button (click)="onDelete(product)" class="delete-option">Eliminar</button>
-                      </div>
-                    }
-                  </div>
-                </td>
-              </tr>
-            } @empty {
-              <tr>
-                <td colspan="6" class="empty-state">
-                  No se encontraron productos.
-                </td>
-              </tr>
-            }
-          </tbody>
-        </table>
-      </div>
+    <div class="table-responsive">
+      <table class="product-table">
+        <thead>
+          <tr>
+            <th>Logo</th>
+            <th>Nombre del producto</th>
+            <th>Descripción <i class="info-icon" title="Descripción del producto">i</i></th>
+            <th>Fecha de liberación <i class="info-icon" title="Fecha en que se libera el producto">i</i></th>
+            <th>Fecha de reestructuración <i class="info-icon" title="Fecha de revisión programada">i</i></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (product of paginatedProducts(); track product.id) {
+          <tr>
+            <td>
+              @if (product.logo && !imageErrors()[product.id]) {
+              <img [src]="product.logo" [alt]="product.name" class="product-logo" (error)="onImageError(product.id)">
+              } @else {
+              <div class="product-logo-fallback">JG</div>
+              }
+            </td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.date_release | date:'dd/MM/yyyy' }}</td>
+            <td>{{ product.date_revision | date:'dd/MM/yyyy' }}</td>
+            <td class="actions-cell">
+              <div class="menu-container">
+                <button class="btn-menu" (click)="toggleMenu(product.id, $event)">⋮</button>
+                @if (activeMenuId() === product.id) {
+                <div class="dropdown-menu">
+                  <button (click)="onEdit(product.id)">Editar</button>
+                  <button (click)="onDelete(product)" class="delete-option">Eliminar</button>
+                </div>
+                }
+              </div>
+            </td>
+          </tr>
+          } @empty {
+          <tr>
+            <td colspan="6" class="empty-state">
+              No se encontraron productos.
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
 
-      <div class="table-footer">
-        <div class="results-count">
-          {{ totalResults() }} Resultados
-        </div>
-        <div class="pagination-controls">
-          <select (change)="onPageSizeChange($event)" [value]="pageSize()" class="page-select" aria-label="Cantidad de resultados por página">
-            <option [value]="5">5</option>
-            <option [value]="10">10</option>
-            <option [value]="20">20</option>
-          </select>
-        </div>
+    <div class="table-footer">
+      <div class="results-count">
+        {{ totalResults() }} Resultados
       </div>
+      <div class="pagination-controls">
+        <select (change)="onPageSizeChange($event)" [value]="pageSize()" class="page-select"
+          aria-label="Cantidad de resultados por página">
+          <option [value]="5">5</option>
+          <option [value]="10">10</option>
+          <option [value]="20">20</option>
+        </select>
+      </div>
+    </div>
     }
   </div>
 </div>
 
 @if (showDeleteModal()) {
-  <app-delete-modal 
-    [message]="'¿Estás seguro de eliminar el producto ' + productToDelete()?.name + '?'"
-    (confirm)="confirmDelete()"
-    (cancel)="cancelDelete()"
-  ></app-delete-modal>
+<app-delete-modal [message]="'¿Estás seguro de eliminar el producto ' + productToDelete()?.name + '?'"
+  (confirm)="confirmDelete()" (cancel)="cancelDelete()"></app-delete-modal>
 }

@@ -76,6 +76,7 @@
             formControlName="date_release" 
             [class.invalid]="isInvalid('date_release')"
             [attr.aria-invalid]="isInvalid('date_release')"
+            [min]="minDate()"
           >
           @if (isInvalid('date_release')) {
             <span class="field-error" aria-live="polite">{{ getErrorMessage('date_release') }}</span>
