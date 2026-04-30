@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-skeleton-row',
@@ -33,7 +33,8 @@ import { Component, Input } from '@angular/core';
       50% { opacity: 0.4; }
       100% { opacity: 1; }
     }
-  `
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SkeletonRowComponent {
   @Input() rows = 5;

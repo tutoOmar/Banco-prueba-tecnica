@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, HostListener, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, Input, Output, EventEmitter, HostListener, AfterViewInit, ElementRef, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -6,7 +6,8 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './delete-modal.component.html',
-  styleUrl: './delete-modal.component.css'
+  styleUrl: './delete-modal.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DeleteModalComponent implements AfterViewInit {
   @Input() message: string = '';
